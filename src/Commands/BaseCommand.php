@@ -15,6 +15,7 @@ use InfyOm\Generator\Generators\RepositoryTestGenerator;
 use InfyOm\Generator\Generators\Scaffold\ControllerGenerator;
 use InfyOm\Generator\Generators\Scaffold\MenuGenerator;
 use InfyOm\Generator\Generators\Scaffold\RequestGenerator;
+use InfyOm\Generator\Generators\Scaffold\ResourceGenerator;
 use InfyOm\Generator\Generators\Scaffold\RoutesGenerator;
 use InfyOm\Generator\Generators\Scaffold\ViewGenerator;
 use InfyOm\Generator\Generators\TestTraitGenerator;
@@ -120,6 +121,11 @@ class BaseCommand extends Command
 
         if (!$this->isSkip('routes') and !$this->isSkip('scaffold_routes')) {
             $routeGenerator = new RoutesGenerator($this->commandData);
+            $routeGenerator->generate();
+        }
+
+        if (!$this->isSkip('resource') and !$this->isSkip('scaffold_resource')) {
+            $routeGenerator = new ResourceGenerator($this->commandData);
             $routeGenerator->generate();
         }
 
