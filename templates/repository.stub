@@ -11,7 +11,7 @@ class $MODEL_NAME$Service
     /**
      * Configure the Model
      **/
-    public function __construct($MODEL_NAME$ $MODEL_NAME_CAMEL$)
+    public function __construct($MODEL_NAME$ $$MODEL_NAME_CAMEL$)
     {
         $this->model = $MODEL_NAME_CAMEL$;
     }
