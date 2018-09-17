@@ -37,7 +37,7 @@ return [
 
         'api_test'          => base_path('tests/'),
 
-        'views'             => base_path('resources/views/'),
+        //'views'             => base_path('resources/views/'),
 
         'schema_files'      => base_path('resources/model_schemas/'),
 
@@ -142,13 +142,13 @@ return [
 
         'swagger'       => false,
 
-        'tests'         => true,
+        'tests'         => false,
 
         'datatables'    => false,
 
         'menu'          => [
 
-            'enabled'       => true,
+            'enabled'       => false,
 
             'menu_file'     => 'layouts/menu.blade.php',
         ],

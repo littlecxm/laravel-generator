@@ -34,7 +34,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Littlecxm\\Generator\\": "src/"
+            "InfyOm\\Generator\\": "src/"
         },
         "files": [
             "src/helpers.php"
