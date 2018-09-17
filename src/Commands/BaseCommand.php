@@ -113,10 +113,10 @@ class BaseCommand extends Command
             $controllerGenerator->generate();
         }
 
-        if (!$this->isSkip('views')) {
-            $viewGenerator = new ViewGenerator($this->commandData);
-            $viewGenerator->generate();
-        }
+        //if (!$this->isSkip('views')) {
+        //    $viewGenerator = new ViewGenerator($this->commandData);
+        //    $viewGenerator->generate();
+        //}
 
         if (!$this->isSkip('routes') and !$this->isSkip('scaffold_routes')) {
             $routeGenerator = new RoutesGenerator($this->commandData);
