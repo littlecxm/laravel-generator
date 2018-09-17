@@ -17,7 +17,7 @@ return [
 
         'datatables'        => app_path('DataTables/'),
 
-        'repository'        => app_path('Repositories/'),
+        'repository'        => app_path('Service/'),
 
         'routes'            => base_path('routes/web.php'),
 
@@ -59,11 +59,11 @@ return [
 
         'datatables'        => 'App\DataTables',
 
-        'repository'        => 'App\Repositories',
+        'repository'        => 'App\Service',
 
         'controller'        => 'App\Http\Controllers',
 
-        'api_controller'    => 'App\Http\Controllers\API',
+        'api_controller'    => 'App\Http\Controllers\Api',
 
         'request'           => 'App\Http\Requests',
 

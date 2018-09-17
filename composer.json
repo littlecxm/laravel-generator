@@ -1,6 +1,6 @@
 {
-    "name": "infyomlabs/laravel-generator",
-    "description": "InfyOm Laravel Generator",
+    "name": "littlecxm/laravel-generator",
+    "description": "Littlecxm Laravel Generator(forked from InfyOmLabs/laravel-generator)",
     "keywords": [
         "laravel",
         "api",
@@ -34,7 +34,7 @@
     },
     "autoload": {
         "psr-4": {
-            "InfyOm\\Generator\\": "src/"
+            "Littlecxm\\Generator\\": "src/"
         },
         "files": [
             "src/helpers.php"
