@@ -142,9 +142,9 @@ return [
 
     'add_on' => [
 
-        'swagger'       => false,
+        'swagger'       => true,
 
-        'tests'         => false,
+        'tests'         => true,
 
         'datatables'    => false,
 
