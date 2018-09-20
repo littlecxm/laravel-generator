@@ -2,89 +2,97 @@
 
 namespace $NAMESPACE_API_CONTROLLER$;
 
+use $NAMESPACE_MODEL$\$MODEL_NAME$;
+use $NAMESPACE_APP$\Http\Controllers\ApiController;
 use $NAMESPACE_API_REQUEST$\Create$MODEL_NAME$APIRequest;
 use $NAMESPACE_API_REQUEST$\Update$MODEL_NAME$APIRequest;
-use $NAMESPACE_MODEL$\$MODEL_NAME$;
-use $NAMESPACE_REPOSITORY$\$MODEL_NAME$Repository;
+use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
-use $NAMESPACE_APP$\Http\Controllers\ApiController;
-use InfyOm\Generator\Criteria\LimitOffsetCriteria;
-use Prettus\Repository\Criteria\RequestCriteria;
-use Response;
 
 $DOC_CONTROLLER$
 class $MODEL_NAME$APIController extends ApiController
 {
     /** @var  $MODEL_NAME$Repository */
-    private $$MODEL_NAME_CAMEL$Repository;
+    private $$MODEL_NAME_CAMEL$;
 
-    public function __construct($MODEL_NAME$Repository $$MODEL_NAME_CAMEL$Repo)
+    public function __construct($MODEL_NAME$ $$MODEL_NAME_SNAKE$)
     {
-        $this->$MODEL_NAME_CAMEL$Repository = $$MODEL_NAME_CAMEL$Repo;
+        $this->$MODEL_NAME_CAMEL$ = $$MODEL_NAME_SNAKE$;
     }
 
     $DOC_INDEX$
     public function index(Request $request)
     {
-        $this->$MODEL_NAME_CAMEL$Repository->pushCriteria(new RequestCriteria($request));
-        $this->$MODEL_NAME_CAMEL$Repository->pushCriteria(new LimitOffsetCriteria($request));
-        $$MODEL_NAME_PLURAL_CAMEL$ = $this->$MODEL_NAME_CAMEL$Repository->all();
-
-        return $this->sendResponse($$MODEL_NAME_PLURAL_CAMEL$->toArray(), '$MODEL_NAME_PLURAL_HUMAN$ retrieved successfully');
+        /** @var $MODEL_NAME$ $$MODEL_NAME_CAMEL$ */
+        $index = $this->$MODEL_NAME_CAMEL$->all();
+        if ($index->count()) {
+            return $this->success($index);
+        } else {
+            return $this->failed('暂无数据', 404);
+        }
     }
 
     $DOC_STORE$
     public function store(Create$MODEL_NAME$APIRequest $request)
     {
-        $input = $request->all();
-
-        $$MODEL_NAME_PLURAL_CAMEL$ = $this->$MODEL_NAME_CAMEL$Repository->create($input);
-
-        return $this->sendResponse($$MODEL_NAME_PLURAL_CAMEL$->toArray(), '$MODEL_NAME_HUMAN$ saved successfully');
+        /** @var $MODEL_NAME$ $$MODEL_NAME_CAMEL$ */
+        $$MODEL_NAME_PLURAL_CAMEL$ = new $MODEL_NAME$($request->all());
+        $store = $$MODEL_NAME_PLURAL_CAMEL$->save();
+        if ($store) {
+            return $this->success('添加成功');
+        } else {
+            return $this->failed('添加失败', 500);
+        }
     }
 
     $DOC_SHOW$
     public function show($id)
     {
         /** @var $MODEL_NAME$ $$MODEL_NAME_CAMEL$ */
-        $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Repository->findWithoutFail($id);
+        $$MODEL_NAME_PLURAL_CAMEL$ = $this->$MODEL_NAME_CAMEL$->find($id);
 
-        if (empty($$MODEL_NAME_CAMEL$)) {
-            return $this->sendError('$MODEL_NAME_HUMAN$ not found');
+        if (is_null($$MODEL_NAME_PLURAL_CAMEL$)) {
+            return $this->failed('条目不存在', 404);
         }
 
-        return $this->sendResponse($$MODEL_NAME_CAMEL$->toArray(), '$MODEL_NAME_HUMAN$ retrieved successfully');
+        return $this->success(new $NAMESPACE_RESOURCE$\$MODEL_NAME$APIResource($$MODEL_NAME_CAMEL$));
     }
 
     $DOC_UPDATE$
     public function update($id, Update$MODEL_NAME$APIRequest $request)
     {
-        $input = $request->all();
-
         /** @var $MODEL_NAME$ $$MODEL_NAME_CAMEL$ */
-        $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Repository->findWithoutFail($id);
-
-        if (empty($$MODEL_NAME_CAMEL$)) {
-            return $this->sendError('$MODEL_NAME_HUMAN$ not found');
+        $$MODEL_NAME_PLURAL_CAMEL$ = $this->$MODEL_NAME_CAMEL$->find($id);
+        if (is_null($$MODEL_NAME_PLURAL_CAMEL$)) {
+            return $this->failed('条目不存在', 404);
         }
 
-        $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Repository->update($input, $id);
+        $update = $this->$MODEL_NAME_CAMEL$->update($input, $id);
 
-        return $this->sendResponse($$MODEL_NAME_CAMEL$->toArray(), '$MODEL_NAME$ updated successfully');
+        if ($update) {
+            return $this->success('修改成功');
+        } else {
+            return $this->failed('修改失败', 500);
+        }
+
     }
 
     $DOC_DESTROY$
     public function destroy($id)
     {
         /** @var $MODEL_NAME$ $$MODEL_NAME_CAMEL$ */
-        $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Repository->findWithoutFail($id);
-
-        if (empty($$MODEL_NAME_CAMEL$)) {
-            return $this->sendError('$MODEL_NAME_HUMAN$ not found');
+        $$MODEL_NAME_PLURAL_CAMEL$ = $this->$MODEL_NAME_CAMEL$->find($id);
+        if (is_null($$MODEL_NAME_PLURAL_CAMEL$)) {
+            return $this->failed('条目不存在', 404);
         }
 
-        $$MODEL_NAME_CAMEL$->delete();
+        $delete = $$MODEL_NAME_PLURAL_CAMEL$->delete();
 
-        return $this->sendResponse($id, '$MODEL_NAME_HUMAN$ deleted successfully');
+        if ($delete) {
+            return $this->success('删除成功');
+        } else {
+            return $this->failed('删除失败', 500);
+        }
+        
     }
 }
