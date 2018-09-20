@@ -133,6 +133,7 @@ class GeneratorConfig
             'App\Http\Controllers\API'
         ).$prefix;
         $this->nsApiRequest = config('infyom.laravel_generator.namespace.api_request', 'App\Http\Requests\API').$prefix;
+        $this->nsApiResource = config('infyom.laravel_generator.namespace.api_resource', 'App\Http\Resources\API').$prefix;
 
         $this->nsRequest = config('infyom.laravel_generator.namespace.request', 'App\Http\Requests').$prefix;
         $this->nsRequestBase = config('infyom.laravel_generator.namespace.request', 'App\Http\Requests');

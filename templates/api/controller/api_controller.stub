@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 $DOC_CONTROLLER$
 class $MODEL_NAME$APIController extends ApiController
 {
-    /** @var  $MODEL_NAME$Repository */
+    /** @var  $MODEL_NAME$ */
     private $$MODEL_NAME_CAMEL$;
 
     public function __construct($MODEL_NAME$ $$MODEL_NAME_SNAKE$)
@@ -67,7 +67,7 @@ class $MODEL_NAME$APIController extends ApiController
             return $this->failed('条目不存在', 404);
         }
 
-        $update = $this->$MODEL_NAME_CAMEL$->update($input, $id);
+        $update = $this->$MODEL_NAME_CAMEL$->update($request->all(), $id);
 
         if ($update) {
             return $this->success('修改成功');
