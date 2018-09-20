@@ -93,6 +93,6 @@ class $MODEL_NAME$APIController extends ApiController
         } else {
             return $this->failed('删除失败', 500);
         }
-        
+
     }
 }

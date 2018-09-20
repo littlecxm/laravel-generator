@@ -31,7 +31,7 @@ return [
 
         'resource'          => app_path('Http/Resources/'),
 
-        'api_resource'      => app_path('Http/Requests/API/'),
+        'api_resource'      => app_path('Http/Resources/API/'),
 
         'api_controller'    => app_path('Http/Controllers/API/'),
 
