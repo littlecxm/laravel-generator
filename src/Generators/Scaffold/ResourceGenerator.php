@@ -119,6 +119,12 @@ class ResourceGenerator extends BaseGenerator
 
     public function rollback()
     {
-        //
+        if ($this->rollbackFile($this->path, $this->resourceFileName)) {
+            $this->commandData->commandComment('Resource file deleted: '.$this->resourceFileName);
+        }
+
+        if ($this->rollbackFile($this->path, $this->collectionFileName)) {
+            $this->commandData->commandComment('Collection file deleted: '.$this->collectionFileName);
+        }
     }
 }
