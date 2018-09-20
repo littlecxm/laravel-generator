@@ -29,7 +29,9 @@ return [
 
         'controller'        => app_path('Http/Controllers/'),
 
-        'resource'        => app_path('Http/Resources/'),
+        'resource'          => app_path('Http/Resources/'),
+
+        'api_resource'      => app_path('Http/Requests/API/'),
 
         'api_controller'    => app_path('Http/Controllers/API/'),
 

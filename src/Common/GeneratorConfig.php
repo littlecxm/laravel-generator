@@ -15,6 +15,7 @@ class GeneratorConfig
 
     public $nsApiController;
     public $nsApiRequest;
+    public $nsApiResource;
 
     public $nsRequest;
     public $nsRequestBase;
@@ -29,6 +30,7 @@ class GeneratorConfig
 
     public $pathApiController;
     public $pathApiRequest;
+    public $pathApiResource;
     public $pathApiRoutes;
     public $pathApiTests;
     public $pathApiTestTraits;
@@ -175,6 +177,11 @@ class GeneratorConfig
             app_path('Http/Requests/API/')
         ).$prefix;
 
+        $this->pathApiResource = config(
+                'infyom.laravel_generator.path.api_resource',
+                app_path('Http/Resources/API/')
+            ).$prefix;
+
         $this->pathApiRoutes = config('infyom.laravel_generator.path.api_routes', app_path('Http/api_routes.php'));
 
         $this->pathApiTests = config('infyom.laravel_generator.path.api_test', base_path('tests/'));
@@ -212,6 +219,7 @@ class GeneratorConfig
         $commandData->addDynamicVariable('$NAMESPACE_MODEL_EXTEND$', $this->nsModelExtend);
 
         $commandData->addDynamicVariable('$NAMESPACE_API_CONTROLLER$', $this->nsApiController);
+        $commandData->addDynamicVariable('$NAMESPACE_API_RESOURCE$', $this->nsApiResource);
         $commandData->addDynamicVariable('$NAMESPACE_API_REQUEST$', $this->nsApiRequest);
 
         $commandData->addDynamicVariable('$NAMESPACE_BASE_CONTROLLER$', $this->nsBaseController);

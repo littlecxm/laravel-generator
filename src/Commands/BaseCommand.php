@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use InfyOm\Generator\Common\CommandData;
 use InfyOm\Generator\Generators\API\APIControllerGenerator;
 use InfyOm\Generator\Generators\API\APIRequestGenerator;
+use InfyOm\Generator\Generators\API\APIResourceGenerator;
 use InfyOm\Generator\Generators\API\APIRoutesGenerator;
 use InfyOm\Generator\Generators\API\APITestGenerator;
 use InfyOm\Generator\Generators\MigrationGenerator;
@@ -83,6 +84,11 @@ class BaseCommand extends Command
         if (!$this->isSkip('controllers') and !$this->isSkip('api_controller')) {
             $controllerGenerator = new APIControllerGenerator($this->commandData);
             $controllerGenerator->generate();
+        }
+
+        if (!$this->isSkip('resource') and !$this->isSkip('api_resource')) {
+            $routeGenerator = new APIResourceGenerator($this->commandData);
+            $routeGenerator->generate();
         }
 
         if (!$this->isSkip('routes') and !$this->isSkip('api_routes')) {
