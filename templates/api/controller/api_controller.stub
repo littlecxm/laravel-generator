@@ -67,7 +67,8 @@ class $MODEL_NAME$APIController extends ApiController
             return $this->failed('条目不存在', 404);
         }
 
-        $update = $this->$MODEL_NAME_CAMEL$->update($request->all(), $id);
+        $update = $$MODEL_NAME_PLURAL_CAMEL$->fill($request->all());
+        $update->save();
 
         if ($update) {
             return $this->success('修改成功');
