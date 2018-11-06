@@ -2,7 +2,6 @@
 
 namespace $NAMESPACE_API_RESOURCE$;
 
-use $NAMESPACE_MODEL$\$MODEL_NAME$;
 use Illuminate\Http\Resources\Json\Resource;
 
 class $MODEL_NAME$Resource extends Resource

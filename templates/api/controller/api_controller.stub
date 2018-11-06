@@ -24,11 +24,11 @@ class $MODEL_NAME$APIController extends ApiController
     public function index(Request $request)
     {
         /** @var $MODEL_NAME$ $$MODEL_NAME_CAMEL$ */
-        $index = $this->$MODEL_NAME_CAMEL$->all();
-        if ($index->count()) {
-            return $this->success($index);
+        $list = $this->$MODEL_NAME_CAMEL$->all();
+        if (\request()->get('page') == 0) {
+            return $this->success($NAMESPACE_RESOURCE$\$MODEL_NAME$::collection($list));
         } else {
-            return $this->failed('暂无数据', 404);
+            return $this->success(new $MODEL_NAME$Collection($list));
         }
     }
 
@@ -55,7 +55,7 @@ class $MODEL_NAME$APIController extends ApiController
             return $this->failed('条目不存在', 404);
         }
 
-        return $this->success(new $NAMESPACE_RESOURCE$\$MODEL_NAME$APIResource($$MODEL_NAME_CAMEL$));
+        return $this->success(new $NAMESPACE_RESOURCE$\$MODEL_NAME$Resource($$MODEL_NAME_CAMEL$));
     }
 
     $DOC_UPDATE$
